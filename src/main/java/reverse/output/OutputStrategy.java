@@ -1,4 +1,8 @@
 package reverse.output;
 
-public class OutputStrategy {
+import reverse.inspection.ClassData;
+import java.util.List;
+
+public interface OutputStrategy {
+    String generate(List<ClassData> classes);
 }
