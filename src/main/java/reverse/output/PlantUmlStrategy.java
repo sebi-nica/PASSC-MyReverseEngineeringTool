@@ -13,19 +13,26 @@ public class PlantUmlStrategy implements OutputStrategy {
             String type = cd.isInterface() ? "interface" : "class";
             sb.append(type).append(" ").append(cd.className()).append(" {\n");
 
-            // Append attributes and methods
+            // attributes
             for (String field : cd.fields()) sb.append("  ").append(field).append("\n");
+
+            //methods
             for (String method : cd.methods()) sb.append("  ").append(method).append("\n");
             sb.append("}\n");
 
-            // Append Inheritance (Extends)
+            // extends
             if (cd.superClassName() != null) {
                 sb.append(cd.superClassName()).append(" <|-- ").append(cd.className()).append("\n");
             }
 
-            // Append Realization (Implements)
+            // implements
             for (String intf : cd.interfaces()) {
                 sb.append(intf).append(" <|.. ").append(cd.className()).append("\n");
+            }
+
+            // dependencies
+            for (String targetName : cd.dependencies()) {
+                sb.append(cd.className()).append(" --> ").append(targetName).append(" : association\n");
             }
         }
 

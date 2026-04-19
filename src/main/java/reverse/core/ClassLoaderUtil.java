@@ -10,7 +10,6 @@ public class ClassLoaderUtil {
         File file = new File(jarFilePath);
         URL url = file.toURI().toURL();
 
-        // Return a new loader pointing to the .jar, delegating to the system class loader
         return new URLClassLoader(new URL[]{url}, ClassLoaderUtil.class.getClassLoader());
     }
 }
